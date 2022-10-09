@@ -13,17 +13,27 @@
       ></router-link>
     </div>
     <div class="logout">
-      <i class="iconfont icon-logout"></i>
+      <i class="iconfont icon-logout" @click="logout"></i>
     </div>
   </div>
 </template>
 
 <script>
-import avatar from "@/components/Avatar.vue";
+import avatar from '@/components/Avatar.vue';
+import Auth from '@/apis/auth';
 
 export default {
   components: {
     avatar,
+  },
+
+  methods: {
+    logout() {
+      console.log('logout');
+      Auth.logout().then((data) => {
+        console.log(data);
+      });
+    },
   },
 };
 </script>
