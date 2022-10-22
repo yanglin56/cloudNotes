@@ -54,10 +54,12 @@
 
 <script>
 import Auth from '@/apis/auth';
+import Bus from '@/helpers/bus';
 
-Auth.getInfo().then((data) => {
-  console.log(data);
-});
+// Auth.getInfo()
+//   .then(data => {
+//     console.log(data)
+//   })
 
 // request('/auth')
 //  .then(data=>{
@@ -104,9 +106,6 @@ export default {
         return;
       }
 
-      console.log(
-        `start register..., username: ${this.register.username} , password: ${this.register.password}`
-      );
       Auth.register({
         username: this.register.username,
         password: this.register.password,
@@ -114,6 +113,7 @@ export default {
         .then((data) => {
           this.register.isError = false;
           this.register.notice = '';
+          Bus.$emit('userInfo', { username: this.login.username });
           this.$router.push({ path: 'notebooks' });
         })
         .catch((data) => {
@@ -140,6 +140,7 @@ export default {
         .then((data) => {
           this.login.isError = false;
           this.login.notice = '';
+          Bus.$emit('userInfo', { username: this.login.username });
           this.$router.push({ path: 'notebooks' });
         })
         .catch((data) => {

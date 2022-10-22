@@ -9,12 +9,21 @@
 </template>
 
 <script>
+import Auth from '@/apis/auth';
+
 export default {
-  name: "Login",
   data() {
     return {
-      msg: "笔记本列表",
+      msg: '笔记本列表',
     };
+  },
+
+  created() {
+    Auth.getInfo().then((res) => {
+      if (!res.isLogin) {
+        this.$router.push({ path: '/login' });
+      }
+    });
   },
 };
 </script>
