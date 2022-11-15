@@ -66,5 +66,6 @@ export default {
 }
 .iconfont {
   color: #fff;
+  background-color: #5e6266;
 }
 </style>
